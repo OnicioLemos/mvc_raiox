@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= titulo %> · Biblioteca MVC</title>
+  <link rel="stylesheet" href="/css/estilo.css">
+</head>
+<body>
+  <header class="topo">
+    <a class="marca" href="/">📚 Biblioteca MVC</a>
+    <nav>
+      <a href="/livros" class="<%= pagina === 'livros' ? 'ativo' : '' %>">Livros</a>
+      <a href="/alunos" class="<%= pagina === 'alunos' ? 'ativo' : '' %>">Alunos</a>
+      <a href="/emprestimos" class="<%= pagina === 'emprestimos' ? 'ativo' : '' %>">Empréstimos</a>
+    </nav>
+  </header>
+  <main class="conteudo">
+    <h1><%= titulo %></h1>
+    <% if (typeof erro !== 'undefined' && erro) { %>
+      <div class="alerta"><%= erro %></div>
+    <% } %>

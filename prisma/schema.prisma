@@ -1,0 +1,39 @@
+// Camada de dados: aqui descrevemos as tabelas do banco.
+// Depois de alterar este arquivo, rode: npx prisma migrate dev --name <nome-da-mudanca>
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Livro {
+  id          Int          @id @default(autoincrement())
+  titulo      String
+  autor       String
+  ano         Int?
+  criadoEm    DateTime     @default(now())
+  emprestimos Emprestimo[]
+}
+
+model Aluno {
+  id          Int          @id @default(autoincrement())
+  nome        String
+  matricula   String       @unique
+  criadoEm    DateTime     @default(now())
+  emprestimos Emprestimo[]
+}
+
+model Emprestimo {
+  id             Int       @id @default(autoincrement())
+  livroId        Int
+  alunoId        Int
+  dataEmprestimo DateTime  @default(now())
+  dataDevolucao  DateTime?
+
+  livro Livro @relation(fields: [livroId], references: [id], onDelete: Cascade)
+  aluno Aluno @relation(fields: [alunoId], references: [id], onDelete: Cascade)
+}

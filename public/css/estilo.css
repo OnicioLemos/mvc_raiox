@@ -1,0 +1,71 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #f4f5f7;
+  color: #1f2933;
+}
+
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  background: #1f3a5f;
+}
+.topo a { color: #fff; text-decoration: none; }
+.marca { font-weight: 700; font-size: 1.15rem; }
+.topo nav a { margin-left: 20px; opacity: .75; padding-bottom: 4px; }
+.topo nav a.ativo, .topo nav a:hover { opacity: 1; border-bottom: 2px solid #f5b942; }
+
+.conteudo { max-width: 1000px; margin: 0 auto; padding: 24px 32px 96px; }
+h1 { margin: 8px 0 20px; }
+h2 { margin: 0 0 14px; font-size: 1.1rem; }
+
+.cartao {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+}
+
+.formulario { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+.formulario label { display: flex; flex-direction: column; font-size: .85rem; gap: 4px; }
+input, select {
+  padding: 8px 10px;
+  border: 1px solid #cbd2d9;
+  border-radius: 6px;
+  font: inherit;
+  min-width: 180px;
+}
+
+button {
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 6px;
+  background: #1f3a5f;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+button:hover { filter: brightness(1.15); }
+button.perigo { background: #b42318; padding: 5px 10px; font-size: .85rem; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid #e4e7eb; }
+th { font-size: .8rem; text-transform: uppercase; color: #616e7c; }
+td form { margin: 0; }
+
+.selo { display: inline-block; padding: 2px 10px; border-radius: 99px; font-size: .8rem; font-weight: 600; }
+.selo.ok { background: #e3f6e8; color: #1a7f37; }
+.selo.ocupado { background: #fdecea; color: #b42318; }
+
+.alerta {
+  background: #fff4e5;
+  border-left: 4px solid #f5a623;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}

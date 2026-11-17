@@ -1,0 +1,30 @@
+{
+  "name": "biblioteca-mvc-raiox",
+  "version": "1.0.0",
+  "description": "App MVC didático (Express + Prisma + MySQL) com painel Raio-X que mostra o caminho de cada requisição pelas camadas",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js --ext js,ejs,css",
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "prisma db seed",
+    "db:studio": "prisma studio",
+    "setup": "prisma migrate dev --name init && prisma db seed"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "ejs": "^7.0.2",
+    "express": "^5.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14",
+    "prisma": "^6.19.3"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "engines": {
+    "node": ">=20.12"
+  }
+}

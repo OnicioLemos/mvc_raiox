@@ -1,0 +1,16 @@
+{
+  "name": "Biblioteca MVC + Raio-X",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": { "label": "Biblioteca MVC", "onAutoForward": "openPreview" }
+  },
+  "postCreateCommand": "npm install && npm run setup",
+  "customizations": {
+    "vscode": {
+      "extensions": ["Prisma.prisma", "DigitalBrainstem.javascript-ejs-support"]
+    }
+  }
+}

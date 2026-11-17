@@ -1,0 +1,40 @@
+<%- include('../partials/cabecalho', { titulo: 'Alunos', pagina: 'alunos' }) %>
+
+<section class="cartao">
+  <h2>Cadastrar aluno</h2>
+  <form method="POST" action="/alunos" class="formulario">
+    <label>Nome <input name="nome" value="<%= form.nome || '' %>"></label>
+    <label>Matrícula <input name="matricula" value="<%= form.matricula || '' %>"></label>
+    <button type="submit">Cadastrar</button>
+  </form>
+</section>
+
+<section class="cartao">
+  <h2>Alunos (<%= alunos.length %>)</h2>
+  <table>
+    <thead>
+      <tr><th>Nome</th><th>Matrícula</th><th>Empréstimos ativos</th><th>Pode emprestar?</th><th></th></tr>
+    </thead>
+    <tbody>
+      <% alunos.forEach((aluno) => { %>
+        <tr>
+          <td><%= aluno.nome %></td>
+          <td><%= aluno.matricula %></td>
+          <td><%= aluno.emprestimosAtivos %></td>
+          <td>
+            <span class="selo <%= aluno.podeEmprestar ? 'ok' : 'ocupado' %>">
+              <%= aluno.podeEmprestar ? 'Sim' : 'Limite atingido' %>
+            </span>
+          </td>
+          <td>
+            <form method="POST" action="/alunos/<%= aluno.id %>/excluir">
+              <button class="perigo" type="submit">Excluir</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+
+<%- include('../partials/rodape') %>

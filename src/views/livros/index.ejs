@@ -1,0 +1,41 @@
+<%- include('../partials/cabecalho', { titulo: 'Livros', pagina: 'livros' }) %>
+
+<section class="cartao">
+  <h2>Cadastrar livro</h2>
+  <form method="POST" action="/livros" class="formulario">
+    <label>Título <input name="titulo" value="<%= form.titulo || '' %>"></label>
+    <label>Autor <input name="autor" value="<%= form.autor || '' %>"></label>
+    <label>Ano <input name="ano" type="number" value="<%= form.ano || '' %>"></label>
+    <button type="submit">Cadastrar</button>
+  </form>
+</section>
+
+<section class="cartao">
+  <h2>Acervo (<%= livros.length %>)</h2>
+  <table>
+    <thead>
+      <tr><th>Título</th><th>Autor</th><th>Ano</th><th>Situação</th><th></th></tr>
+    </thead>
+    <tbody>
+      <% livros.forEach((livro) => { %>
+        <tr>
+          <td><%= livro.titulo %></td>
+          <td><%= livro.autor %></td>
+          <td><%= livro.ano || '—' %></td>
+          <td>
+            <span class="selo <%= livro.disponivel ? 'ok' : 'ocupado' %>">
+              <%= livro.disponivel ? 'Disponível' : 'Emprestado' %>
+            </span>
+          </td>
+          <td>
+            <form method="POST" action="/livros/<%= livro.id %>/excluir">
+              <button class="perigo" type="submit">Excluir</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+
+<%- include('../partials/rodape') %>

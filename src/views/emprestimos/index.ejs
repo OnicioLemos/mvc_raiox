@@ -1,0 +1,58 @@
+<%- include('../partials/cabecalho', { titulo: 'Empréstimos', pagina: 'emprestimos' }) %>
+
+<section class="cartao">
+  <h2>Novo empréstimo</h2>
+  <form method="POST" action="/emprestimos" class="formulario">
+    <label>Livro
+      <select name="livroId">
+        <option value="">Escolha…</option>
+        <% livrosDisponiveis.forEach((livro) => { %>
+          <option value="<%= livro.id %>"><%= livro.titulo %> (id <%= livro.id %>)</option>
+        <% }) %>
+      </select>
+    </label>
+    <label>Aluno
+      <select name="alunoId">
+        <option value="">Escolha…</option>
+        <% alunos.forEach((aluno) => { %>
+          <option value="<%= aluno.id %>"><%= aluno.nome %> (id <%= aluno.id %>)</option>
+        <% }) %>
+      </select>
+    </label>
+    <button type="submit">Emprestar</button>
+  </form>
+</section>
+
+<section class="cartao">
+  <h2>Histórico</h2>
+  <table>
+    <thead>
+      <tr><th>Livro</th><th>Aluno</th><th>Retirada</th><th>Devolução</th><th></th></tr>
+    </thead>
+    <tbody>
+      <% emprestimos.forEach((emprestimo) => { %>
+        <tr>
+          <td><%= emprestimo.livro.titulo %></td>
+          <td><%= emprestimo.aluno.nome %></td>
+          <td><%= emprestimo.dataEmprestimo.toLocaleDateString('pt-BR') %></td>
+          <td>
+            <% if (emprestimo.dataDevolucao) { %>
+              <%= emprestimo.dataDevolucao.toLocaleDateString('pt-BR') %>
+            <% } else { %>
+              <span class="selo ocupado">Em aberto</span>
+            <% } %>
+          </td>
+          <td>
+            <% if (!emprestimo.dataDevolucao) { %>
+              <form method="POST" action="/emprestimos/<%= emprestimo.id %>/devolver">
+                <button type="submit">Devolver</button>
+              </form>
+            <% } %>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+
+<%- include('../partials/rodape') %>
